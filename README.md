@@ -1,5 +1,33 @@
-# 38c84b69-4433-4fe1-a1bc-e047faf14237-a6280f5c-e42f-45fd-ac49-13ae829e596c
+# Event Management Platform
 
-https://sonar.server.examly.io/dashboard?id=iamneo-production_38c84b69-4433-4fe1-a1bc-e047faf14237-a6280f5c-e42f-45fd-ac49-13ae829e596c&amp;codeScope=overall
+A full-stack Event & Workshop Management Platform built with ASP.NET Core, Angular, SQL Server, and Entity Framework Core.
 
-https://8080-abcbdddfdeeabeadfcbbdcdabfdbdfafceffdacaeec.premiumproject.examly.io/
+## Features
+
+- JWT Authentication
+- Role-Based Authorization
+- Workshop & Event Management
+- Event Booking
+- Feedback Management
+- RESTful APIs
+
+## Tech Stack
+
+- ASP.NET Core
+- Angular
+- SQL Server
+- Entity Framework Core
+- JWT Authentication
+
+## Run Locally
+
+```bash
+git clone https://github.com/PrachiSapkal/Workshop-Event-Management-System.git
+
+cd dotnetapp
+dotnet run
+
+cd ../angularapp
+npm install
+ng serve
+```
