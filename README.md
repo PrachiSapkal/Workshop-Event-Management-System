@@ -1,33 +1,64 @@
-# Event Management Platform
+# Workshop Event Management System
 
-A full-stack Event & Workshop Management Platform built with ASP.NET Core, Angular, SQL Server, and Entity Framework Core.
+A full-stack Workshop & Event Management Platform built using ASP.NET Core, Angular, and SQL Server. The application provides secure authentication, workshop management, event booking, and feedback functionalities through a RESTful architecture.
 
 ## Features
 
-- JWT Authentication
-- Role-Based Authorization
-- Workshop & Event Management
-- Event Booking
-- Feedback Management
+- JWT-based authentication and authorization
+- Workshop and event management
+- Event booking and registration
+- Feedback management
 - RESTful APIs
+- SQL Server integration with Entity Framework Core
 
 ## Tech Stack
 
-- ASP.NET Core
+**Frontend**
 - Angular
-- SQL Server
-- Entity Framework Core
-- JWT Authentication
+- TypeScript
+- HTML
+- CSS
 
-## Run Locally
+**Backend**
+- ASP.NET Core
+- C#
+- Entity Framework Core
+
+**Database**
+- SQL Server
+
+## Project Structure
+
+```
+.
+├── angularapp/      # Angular frontend
+├── dotnetapp/       # ASP.NET Core Web API
+├── TestProject/     # Unit tests
+└── README.md
+```
+
+## Getting Started
 
 ```bash
 git clone https://github.com/PrachiSapkal/Workshop-Event-Management-System.git
+```
 
+Configure the database connection string and JWT secret in `appsettings.Development.json`, then run:
+
+```bash
+# Backend
 cd dotnetapp
+dotnet restore
 dotnet run
 
-cd ../angularapp
+# Frontend
+cd angularapp
 npm install
 ng serve
 ```
+
+## Author
+
+**Prachi Sapkal**
+
+GitHub: https://github.com/PrachiSapkal
