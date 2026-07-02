@@ -1,4 +1,4 @@
-# Workshop Event Management System
+# Workshop Event Management Platform
 
 A full-stack Workshop & Event Management Platform built using ASP.NET Core, Angular, and SQL Server. The application provides secure authentication, workshop management, event booking, and feedback functionalities through a RESTful architecture.
 
