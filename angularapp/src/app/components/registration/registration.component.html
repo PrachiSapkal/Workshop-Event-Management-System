@@ -1,0 +1,70 @@
+<h2>Registration</h2>
+<form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+
+  <label>Username*</label>
+  <input formControlName="Username" type="text" />
+  <div *ngIf="registrationForm.get('Username')?.touched && registrationForm.get('Username')?.invalid">
+    <small *ngIf="registrationForm.get('Username')?.errors?.required">Username is required.</small>
+    <small *ngIf="registrationForm.get('Username')?.errors?.minlength">Minimum 3 characters required.</small>
+  <small *ngIf="registrationForm.get('Username')?.errors?.pattern">Username can only contain letters, numbers, spaces, and '@'.</small>
+
+  </div>
+
+  <label>Email*</label>
+  <input formControlName="Email" type="email" />
+  <div *ngIf="registrationForm.get('Email')?.touched && registrationForm.get('Email')?.invalid">
+    <small *ngIf="registrationForm.get('Email')?.errors?.required">Email is required.</small>
+    <small *ngIf="registrationForm.get('Email')?.errors?.email">Invalid email format.</small>
+  </div>
+
+  <label>Mobile Number*</label>
+  <input formControlName="MobileNumber" type="text" />
+  <div *ngIf="registrationForm.get('MobileNumber')?.touched && registrationForm.get('MobileNumber')?.invalid">
+    <small *ngIf="registrationForm.get('MobileNumber')?.errors?.required">Mobile number is required.</small>
+    <small *ngIf="registrationForm.get('MobileNumber')?.errors?.pattern">Enter a valid 10-digit number.</small>
+  </div>
+
+  <label>Password*</label>
+  <input formControlName="Password" type="password" />
+  <div *ngIf="registrationForm.get('Password')?.touched && registrationForm.get('Password')?.invalid">
+    <small *ngIf="registrationForm.get('Password')?.errors?.required">Password is required.</small>
+    <small *ngIf="registrationForm.get('Password')?.errors?.minlength">Minimum 6 characters required.</small>
+    <small *ngIf="registrationForm.get('Password')?.errors?.pattern">
+      Password must include uppercase, lowercase, number, and special character.
+    </small>
+  </div>
+  
+  <label>Confirm Password*</label>
+  <input formControlName="ConfirmPassword" type="password" />
+  <div *ngIf="registrationForm.get('ConfirmPassword')?.touched && registrationForm.errors?.mismatch">
+    <small>Passwords do not match.</small>
+  </div>
+
+  <label>User Role*</label>
+  <select formControlName="UserRole">
+    <option value="">Select Role</option>
+    <option value="User">User</option>
+    <option value="Admin">Admin</option>
+  </select>
+  <div *ngIf="registrationForm.get('UserRole')?.touched && registrationForm.get('UserRole')?.invalid">
+    <small>User role is required.</small>
+  </div>
+
+  <div *ngIf="showSecretKey">
+    <label>Secret Key*</label>
+    <input formControlName="SecretKey" type="text" />
+    <div *ngIf="registrationForm.get('SecretKey')?.touched && registrationForm.get('SecretKey')?.invalid">
+      <small>Secret Key is required for Admin role.</small>
+    </div>
+  </div>
+
+  <button type="submit">Register</button>
+
+  <p class="text-center mt-3 small">
+    Already have an account?
+    <a routerLink="/login" class="fw-semibold text-decoration-none">Login here</a>
+  </p>
+</form>
+
+<p *ngIf="errorMessage" style="color: red;">{{ errorMessage }}</p>
+<p *ngIf="successMessage" style="color: green;">{{ successMessage }}</p>

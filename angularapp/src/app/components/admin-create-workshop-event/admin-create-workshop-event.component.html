@@ -1,0 +1,126 @@
+<h1>Create New Workshop Event</h1>
+
+<form [formGroup]="eventForm" (ngSubmit)="onSubmit()" novalidate>
+  <!-- Event Name -->
+  <div class="form-group">
+    <label>Event Name *</label>
+    <input formControlName="EventName" type="text" placeholder="Enter the event name" />
+    <div *ngIf="f.EventName.touched && f.EventName.invalid" class="error">
+      Event Name is required
+    </div>
+  </div>
+
+  <!-- Organizer Name -->
+  <div class="form-group">
+    <label>Organizer Name *</label>
+    <input formControlName="OrganizerName" type="text" placeholder="Enter organizer's name" />
+    <div *ngIf="f.OrganizerName.touched && f.OrganizerName.invalid" class="error">
+      Organizer Name is required
+    </div>
+  </div>
+
+  <!-- Category -->
+  <div class="form-group">
+    <label>Category *</label>
+    <select formControlName="Category" (change)="onCategoryChange($event)">
+      <option value="" disabled selected>Select a category</option>
+      <option value="Technical">Technical</option>
+      <option value="Non-Technical">Non-Technical</option>
+      <option value="Soft Skills">Soft Skills</option>
+      <option value="Management">Management</option>
+      <option value="Others">Others</option>
+    </select>
+    <div *ngIf="f.Category.touched && f.Category.invalid" class="error">
+      Category is required
+    </div>
+  </div>
+
+  <!-- Other Category -->
+  <div class="form-group" *ngIf="showOtherCategory">
+    <label>Enter New Category *</label>
+    <input [formControl]="otherCategoryControl" type="text" placeholder="Enter new category name" />
+    <div *ngIf="otherCategoryControl.touched && otherCategoryControl.invalid" class="error">
+      New category name is required
+    </div>
+  </div>
+
+  <!-- Description -->
+  <div class="form-group">
+    <label>Description *</label>
+    <textarea formControlName="Description" placeholder="Provide a brief description of the event"></textarea>
+    <div *ngIf="f.Description.touched && f.Description.invalid" class="error">
+      Description is required
+    </div>
+  </div>
+
+  <!-- Location -->
+  <div class="form-group">
+    <label>Location *</label>
+    <input formControlName="Location" type="text" placeholder="Enter the event location" />
+    <div *ngIf="f.Location.touched && f.Location.invalid" class="error">
+      Location is required
+    </div>
+  </div>
+
+  <!-- Start Date & Time -->
+  <div class="form-group">
+    <label>Start Date & Time *</label>
+    <input formControlName="StartDateTime" type="datetime-local" />
+    <div *ngIf="f.StartDateTime.touched && f.StartDateTime.errors?.required" class="error">
+      Start Date & Time is required
+    </div>
+    <div *ngIf="f.StartDateTime.touched && f.StartDateTime.errors?.notFutureDate" class="error">
+      Start Date & Time must be in the future
+    </div>
+  </div>
+
+  <!-- End Date & Time -->
+  <div class="form-group">
+    <label>End Date & Time *</label>
+    <input formControlName="EndDateTime" type="datetime-local" />
+    <div *ngIf="f.EndDateTime.touched && f.EndDateTime.errors?.required" class="error">
+      End Date & Time is required
+    </div>
+  </div>
+
+  <!-- Cross-field Date Errors -->
+  <div class="form-group cross-errors"
+       *ngIf="f.StartDateTime.touched && f.EndDateTime.touched && eventForm.errors">
+    <div *ngIf="eventForm.errors?.sameDateError">Start and End Date should not be the same</div>
+    <div *ngIf="eventForm.errors?.invalidDateRange">End Date & Time must be after Start Date & Time</div>
+    <div *ngIf="eventForm.errors?.tooShortDuration">Event duration must be at least 30 minutes</div>
+  </div>
+
+  <!-- Capacity -->
+  <div class="form-group">
+    <label>Capacity *</label>
+    <input formControlName="Capacity" type="number" min="1" placeholder="Enter maximum number of participants" />
+    <div *ngIf="f.Capacity.touched && f.Capacity.invalid" class="error">
+      Capacity must be at least 1
+    </div>
+  </div>
+
+  <!-- Submit Button -->
+  <div class="form-group">
+    <button type="submit" [disabled]="eventForm.invalid || submitting">Submit</button>
+  </div>
+</form>
+
+
+
+<!-- Success Modal Popup -->
+<div *ngIf="successMessage" class="modal-overlay">
+  <div class="modal-popup">
+    <p>{{ successMessage }}</p>
+    <button (click)="closeSuccessModal()">OK</button>
+  </div>
+</div>
+
+<!-- Error Message (Stays as a simple banner) -->
+<!-- Error Modal Popup -->
+<div *ngIf="errorMessage" class="modal-overlay">
+  <div class="modal-popup">
+    <p>{{ errorMessage }}</p>
+    <button (click)="closeErrorModal()">OK</button>
+  </div>
+</div>

@@ -1,0 +1,103 @@
+<h1>Workshop Event Listings</h1>
+
+<!-- Search Bar -->
+<div class="search-container">
+  <input
+    type="text"
+    [(ngModel)]="searchValue"
+    (ngModelChange)="onSearch()"
+    placeholder="Search by Event Name, Organizer, or Location"
+  />
+</div>
+
+<!-- Messages -->
+<div *ngIf="successMessage" class="success">{{ successMessage }}</div>
+<div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+
+<!-- Events Table -->
+<!-- MODIFIED: Check filteredEvents for the "no records" message, but iterate over paginatedEvents -->
+<table *ngIf="filteredEvents.length > 0">
+  <thead>
+    <tr>
+      <th>S.No</th>
+      <th>Event Name</th>
+      <th>Organizer</th>
+      <th>Category</th>
+      <th>Description</th>
+      <th>Location</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>Capacity</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- MODIFIED: Loop over 'paginatedEvents' and update S.No calculation -->
+    <tr *ngFor="let e of paginatedEvents; let i = index">
+      <td>{{ (currentPage - 1) * itemsPerPage + i + 1 }}</td>
+      <td>{{ e.EventName }}</td>
+      <td>{{ e.OrganizerName }}</td>
+      <td>{{ e.Category }}</td>
+      <td>{{ e.Description }}</td>
+      <td>{{ e.Location }}</td>
+      <td>{{ e.StartDateTime | date: 'short' }}</td>
+      <td>{{ e.EndDateTime | date: 'short' }}</td>
+      <td>{{ e.Capacity }}</td>
+      <td class="action-cell">
+        <button class="btn-edit" (click)="onEdit(e)">Edit</button>
+        <button class="btn-delete" (click)="openDeleteConfirmation(e)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- No Records Found Message (Unchanged) -->
+<div *ngIf="!loading && filteredEvents.length === 0" class="info">
+  Oops! No records found.
+</div>
+
+<!-- --- NEW: Pagination Controls --- -->
+<div *ngIf="totalPages > 1" class="pagination-container">
+  <div class="pagination-summary">
+    Page {{ currentPage }} of {{ totalPages }}
+  </div>
+  <div class="pagination-controls">
+    <button (click)="goToPreviousPage()" [disabled]="currentPage === 1">
+      &laquo; Previous
+    </button>
+    <!-- You can enhance this part to show only a few page numbers if you have many pages -->
+    <button *ngFor="let page of pages" 
+            (click)="goToPage(page)" 
+            [class.active]="currentPage === page">
+      {{ page }}
+    </button>
+    <button (click)="goToNextPage()" [disabled]="currentPage === totalPages">
+      Next &raquo;
+    </button>
+  </div>
+</div>
+
+<!-- Confirmation Modal for Deletion (Unchanged) -->
+<div *ngIf="showConfirmationModal" class="modal-overlay">
+  <div class="modal-popup">
+    <h3>{{ modalTitle }}</h3>
+    <p>{{ modalMessage }}</p>
+    <div class="modal-actions">
+      <button class="btn-cancel" (click)="closeModal()">Cancel</button>
+      <button class="btn-confirm" (click)="confirmAction()">Confirm</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- Success Modal -->
+<div *ngIf="showSuccessModal" class="modal-overlay">
+  <div class="modal-popup">
+    <h3>Success</h3>
+    <p>{{ successModalMessage }}</p>
+    <div class="modal-actions">
+      <button class="btn-confirm" (click)="closeSuccessModal()">Ok</button>
+    </div>
+  </div>
+</div>
+

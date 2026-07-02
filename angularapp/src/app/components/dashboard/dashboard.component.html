@@ -1,0 +1,65 @@
+<div class="admin-dashboard-wrapper">
+  
+  <div *ngIf="isLoading" class="loading-container">
+    <div class="spinner"></div>
+    <p>Loading Admin Dashboard...</p>
+  </div>
+
+  <div *ngIf="error && !isLoading" class="error-container">
+    <p>{{ error }}</p>
+  </div>
+
+  <div *ngIf="!isLoading && !error">
+    <header class="dashboard-header">
+      <h1>Admin Dashboard</h1>
+      <p>Welcome, {{ username }}! Here is an overview of the system.</p>
+    </header>
+
+    <div class="stats-grid">
+      <div class="stat-card purple" (click)="navigateTo('/admin/admin-view-workshop-event')">
+        <div class="stat-number">{{ totalWorkshops }}</div>
+        <div class="stat-label">Total Workshops Created</div>
+      </div>
+      <div class="stat-card teal" (click)="navigateTo('/admin/admin-view-bookings')">
+        <div class="stat-number">{{ totalBookings }}</div>
+        <div class="stat-label">Total User Bookings</div>
+      </div>
+      <div class="stat-card navy" (click)="navigateTo('/admin/adminviewfeedback')">
+        <div class="stat-number">{{ totalFeedbacks }}</div>
+        <div class="stat-label">Total Feedbacks Received</div>
+      </div>
+    </div>
+
+    <div class="widgets-grid">
+      <div class="widget-card">
+        <h3>Booking Status</h3>
+        <ul *ngIf="(bookingStatusCounts | keyvalue).length > 0; else noBookings">
+          <li *ngFor="let item of bookingStatusCounts | keyvalue">
+            {{ item.key }}
+            <span class="item-count">{{ item.value }}</span>
+          </li>
+        </ul>
+        <ng-template #noBookings><p class="placeholder-text">No bookings to show yet.</p></ng-template>
+      </div>
+
+      <div class="widget-card">
+        <h3>Most Popular Workshops</h3>
+        <ul *ngIf="mostBookedWorkshops.length > 0; else noPopular">
+          <li *ngFor="let workshop of mostBookedWorkshops">
+            {{ workshop.title }}
+            <span class="item-count">{{ workshop.count }} Bookings</span>
+          </li>
+        </ul>
+        <ng-template #noPopular><p class="placeholder-text">No popular workshops to show yet.</p></ng-template>
+      </div>
+
+      <div class="widget-card">
+        <h3>Latest Feedback</h3>
+        <div *ngIf="latestFeedback; else noFeedback">
+          <blockquote class="feedback-comment">"{{ latestFeedback.FeedbackText }}"</blockquote>
+        </div>
+        <ng-template #noFeedback><p class="placeholder-text">No feedback has been submitted yet.</p></ng-template>
+      </div>
+    </div>
+  </div>
+</div>

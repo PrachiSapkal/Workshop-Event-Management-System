@@ -1,0 +1,279 @@
+/* Page Title */
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #1e3c72;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Sort Controls */
+.sort-controls {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sort-controls span {
+  font-weight: 600;
+  color: #34495e;
+}
+
+.sort-controls button {
+  background-color: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Table Styling */
+.bookings-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+th,
+td {
+  padding: 15px;
+  border: 1px solid #ddd;
+  text-align: left;
+  vertical-align: middle;
+}
+
+th {
+  background-color: #34495e;
+  color: white;
+}
+
+tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+tr:hover {
+  background-color: rgba(42, 152, 97, 0.07);
+}
+
+.status {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  /* Pill shape */
+  font-weight: bold;
+  font-size: 12px;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.status.Approved {
+  background-color: #28a745;
+}
+
+/* Green */
+.status.Rejected {
+  background-color: #dc3545;
+}
+
+/* Red */
+.status.UnderReview,
+.status.Submitted {
+  background-color: #fd7e14;
+}
+
+/* Orange */
+
+.action-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Center buttons horizontally */
+  justify-content: center;
+  /* Center buttons vertically */
+  gap: 8px;
+}
+
+.action-cell button {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  width: 130px;
+  /* Give buttons a consistent width */
+}
+
+.btn-view-proof {
+  background-color: #007bff;
+}
+
+.btn-view-proof:hover {
+  background-color: #0056b3;
+}
+
+.btn-cancel {
+  background-color: #e74c3c;
+}
+
+.btn-cancel:hover {
+  background-color: #c0392b;
+}
+
+/* Modal Styling */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(29, 60, 114, 0.5);
+  backdrop-filter: blur(5px);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-popup {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  max-width: 450px;
+  width: 90%;
+  position: relative;
+}
+
+.modal-popup h3 {
+  margin-top: 0;
+  color: #1e3c72;
+}
+
+.modal-popup p {
+  font-size: 16px;
+  color: #333;
+  margin: 15px 0 30px 0;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.modal-actions button {
+  padding: 10px 25px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-confirm {
+  background-color: #d9534f;
+  color: white;
+}
+
+.btn-cancel-modal {
+  background-color: #6c757d;
+  color: white;
+}
+
+/* Proof Modal Specifics */
+.proof-popup {
+  max-width: 800px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #aaa;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+.proof-content {
+  margin-top: 20px;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+.proof-content img,
+.proof-content iframe {
+  width: 100%;
+  border: none;
+  height: 60vh;
+}
+
+/* Message Banners */
+.error,
+.info {
+  padding: 15px;
+  margin: 20px auto;
+  border-radius: 6px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.error {
+  color: #721c24;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+}
+
+.info {
+  color: #0c5460;
+  background-color: #d1ecf1;
+  border: 1px solid #bee5eb;
+}
+
+/* Spinner Overlay */
+.spinner-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.85);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.spinner-overlay p {
+  margin-top: 15px;
+  font-size: 18px;
+  color: #217a50;
+  font-weight: 600;
+}
+
+.spinner {
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid #2a9861;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

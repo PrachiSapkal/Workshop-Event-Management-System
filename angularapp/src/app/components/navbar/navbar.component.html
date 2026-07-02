@@ -1,0 +1,8 @@
+
+<div class="navbar" *ngIf="!(aService.currentUser | async)">
+    <h2 class="logo">Workshop Event Management System</h2>
+    <nav class="nav-links">
+        <a routerLink="/register">Register</a>
+        <a routerLink="/login">Login</a>
+    </nav>
+</div>

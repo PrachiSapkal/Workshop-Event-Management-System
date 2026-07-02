@@ -1,0 +1,30 @@
+<nav class="navbar" *ngIf="(aService.currentUser | async)?.UserRole === 'User'">
+  <div class="navbar-brand">WORKSHOP EVENT MANAGEMENT SYSTEM</div>
+  
+  <div class="navbar-links">
+    <a routerLink="/user/user-profile">{{ User_name }}/User</a>
+    <a (click)="navigateWithLoader('user/home')">Home</a>
+    
+    <a routerLink="/user/user-view-workshop-event">Workshop Event</a>
+    <a (click)="navigateWithLoader('/user/user-applied-workshop-event')">My Bookings</a>
+
+    <div class="dropdown">
+      <button class="dropbtn">Feedback</button>
+      <div class="dropdown-content">
+        <a (click)="navigateWithLoader('/user/useraddfeedback')">Post Feedback</a>
+        <a (click)="navigateWithLoader('/user/userviewfeedback')">My Feedback</a>
+      </div>
+    </div>
+
+    <button class="logout-button" (click)="logout()">Log Out</button>
+  </div>
+</nav>
+  
+<!-- This modal will now be styled by the new CSS -->
+<div *ngIf="showLogoutModal" class="modal">
+  <div class="modal-content">
+    <p>Are you sure you want to logout?</p>
+    <button (click)="confirmLogout()" class="btn logout-btn">Yes, Logout</button>
+    <button (click)="cancelLogout()" class="btn btn-secondary">Cancel</button>
+  </div>
+</div>

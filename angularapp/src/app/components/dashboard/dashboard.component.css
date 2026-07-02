@@ -1,0 +1,148 @@
+
+/* Base Layout & Background */
+.admin-dashboard-wrapper {
+  background-color: #f8f9fa;
+  padding: 2rem 3rem;
+  min-height: 100vh;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.dashboard-header { margin-bottom: 2rem; }
+.dashboard-header h1 { font-size: 2.25rem; font-weight: 700; color: #343a40; }
+.dashboard-header p { font-size: 1.1rem; color: #6c757d; }
+
+/* Stat Card Styling */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.stat-card {
+  padding: 2rem;
+  border-radius: 10px;
+  color: white;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.stat-card.purple { background: linear-gradient(135deg, #6f42c1, #4a1f8c); }
+.stat-card.teal { background: linear-gradient(135deg, #20c997, #15735d); }
+.stat-card.navy { background: linear-gradient(135deg, #343a40, #1d2124); }
+
+.stat-number { font-size: 3rem; font-weight: bold; line-height: 1; }
+.stat-label { font-size: 1rem; margin-top: 0.5rem; opacity: 0.9; }
+
+/* Grid layout for the widgets section */
+.widgets-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Styling for the individual widget cards */
+.widget-card {
+  background-color: #ffffff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+}
+
+.widget-card h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #343a40;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #e9ecef;
+  padding-bottom: 0.75rem;
+}
+
+/* Styles specific to the feedback widget */
+.feedback-comment {
+  font-style: italic;
+  color: #6c757d;
+  border-left: 3px solid #6f42c1;
+  padding-left: 1rem;
+  margin: 0.5rem 0 0 0;
+}
+
+.placeholder-text {
+  color: #868e96;
+  font-style: italic;
+  font-size: 0.9rem;
+  padding-top: 1rem;
+}
+
+/* Loading and Error State Styling */
+.loading-container, .error-container { 
+  display: flex; 
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center; 
+  padding: 4rem 1rem; 
+  text-align: center; 
+}
+.spinner { 
+  border: 4px solid rgba(0,0,0,0.1); 
+  width: 36px; 
+  height: 36px; 
+  border-radius: 50%; 
+  border-left-color: #6f42c1;
+  animation: spin 1s ease infinite; 
+  margin-bottom: 1rem; 
+}
+@keyframes spin { 
+  0% { transform: rotate(0deg); } 
+  100% { transform: rotate(360deg); } 
+}
+.error-container p { 
+  color: #dc3545; 
+  font-weight: 500; 
+  font-size: 1.1rem; 
+}
+
+.widgets-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.widget-card ul li {
+  padding: 0.75rem 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.item-count {
+  float: right;
+  font-weight: bold;
+  background-color: #e9ecef;
+  color: #495057;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+}
+
+
+
+.capacity-warning {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.feedback-comment {
+  font-style: italic;
+  color: #6c757d;
+  border-left: 3px solid #6f42c1;
+  padding-left: 1rem;
+  margin: 0.5rem 0 0 0;
+}

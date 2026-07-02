@@ -1,0 +1,65 @@
+<div class="container mt-4">
+  <h1>Available Workshop Events</h1>
+
+  <!-- Themed Loading Spinner -->
+  <div *ngIf="isLoading" class="spinner-overlay">
+    <div class="spinner"></div>
+    <p>Finding available events...</p>
+  </div>
+
+  <div *ngIf="!isLoading">
+    <!-- Events Grid -->
+    <div *ngIf="filteredEvents.length > 0" class="events-grid">
+      
+      <!-- Card Element with *ngFor -->
+      <div class="event-card" *ngFor="let event of filteredEvents">
+        
+        <!-- Image Section -->
+        <div class="card-image">
+          <!-- UPDATED: The src now directly uses the ImageUrl property assigned in the component -->
+          <img [src]="event.ImageUrl" alt="Image for {{ event.EventName }}">
+        </div>
+
+        <!-- Card Header -->
+        <div class="card-header">
+          <h3>{{ event.EventName }}</h3>
+          <p class="organizer">by {{ event.OrganizerName }}</p>
+        </div>
+
+        <!-- Card Body -->
+        <div class="card-body">
+          <p class="description">{{ event.Description }}</p>
+          <div class="details-section">
+            <div class="detail-item"><strong>Category:</strong> {{ event.Category }}</div>
+            <div class="detail-item"><strong>Location:</strong> {{ event.Location }}</div>
+            <div class="detail-item"><strong>Starts:</strong> {{ event.StartDateTime | date:'medium' }}</div>
+            <div class="detail-item"><strong>Ends:</strong> {{ event.EndDateTime | date:'medium' }}</div>
+            <div class="detail-item"><strong>Capacity:</strong> {{ event.Capacity }} seats</div>
+          </div>
+        </div>
+        
+        <!-- Card Footer for Actions -->
+        <div class="card-footer">
+          <span *ngIf="isRegistered(event)" class="badge bg-success">Registered</span>
+          <button *ngIf="!isRegistered(event)"
+                  class="btn btn-primary"
+                  (click)="registerEvent(event.WorkshopEventId)">
+            Register Now
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pagination Controls -->
+    <div *ngIf="totalPages > 1" class="pagination-controls">
+      <button class="btn btn-outline-secondary" (click)="prevPage()" [disabled]="currentPage === 1">Previous</button>
+      <span>Page {{ currentPage }} of {{ totalPages }}</span>
+      <button class="btn btn-outline-secondary" (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
+    </div>
+
+    <!-- No Records Message -->
+    <div class="alert alert-info mt-4 text-center" *ngIf="!isLoading && allEvents.length === 0">
+      There are currently no upcoming workshop events available. Please check back later!
+    </div>
+  </div>
+</div>

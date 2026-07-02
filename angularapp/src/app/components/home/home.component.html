@@ -1,0 +1,68 @@
+<div class="home-page-wrapper">
+  
+  <div *ngIf="isLoading" class="loading-container">
+    <div class="spinner"></div>
+    <p>Loading your dashboard...</p>
+  </div>
+
+  <div *ngIf="error && !isLoading" class="error-container">
+    <p>{{ error }}</p>
+  </div>
+
+  <div *ngIf="!isLoading && !error">
+    <header class="dashboard-header">
+      <h1>Welcome back, {{ username }}!</h1>
+      <p>Here is a summary of your activity.</p>
+    </header>
+
+    <!-- NEW: Card-based layout for stats -->
+    <div class="stats-grid">
+      <div class="stat-card blue" (click)="navigateTo('user/user-view-workshop-event')">
+        <div class="stat-number">{{ totalWorkshopsFound }}</div>
+        <div class="stat-label">Total Workshops Available</div>
+      </div>
+      <div class="stat-card green" (click)="navigateTo('user/user-applied-workshop-event')">
+        <div class="stat-number">{{ registeredWorkshopsCount }}</div>
+        <div class="stat-label">Workshops You've Registered</div>
+      </div>
+      <div class="stat-card orange" (click)="navigateTo('user/userviewfeedback')">
+        <div class="stat-number">{{ feedbackPostedCount }}</div>
+        <div class="stat-label">Feedbacks You've Posted</div>
+      </div>
+    </div>
+
+    <div *ngIf="nextUpcomingEvent">
+      <h2>Your Next Upcoming Workshop</h2>
+      <div class="event-highlight-card upcoming">
+        <div class="event-content">
+          <h3>{{ nextUpcomingEvent.EventName }}</h3>
+          <p class="organizer">By: {{ nextUpcomingEvent.OrganizerName }}</p>
+          <div class="event-details">
+            <span><i class="fa-solid fa-calendar-alt"></i> &nbsp;Starts: {{ nextUpcomingEvent.StartDateTime | date:'full' }}</span>
+            <span><i class="fa-solid fa-map-marker-alt"></i> &nbsp;Location: {{ nextUpcomingEvent.Location }}</span>
+          </div>
+        </div>
+        <div class="event-actions">
+          <button (click)="viewEventDetails(nextUpcomingEvent.WorkshopEventId)">View Details</button>
+        </div>
+      </div>
+    </div>
+    
+    <div *ngIf="latestEvent">
+      <h2>Latest Workshop Announcement</h2>
+      <div class="event-highlight-card">
+        <div class="event-content">
+          <h3>{{ latestEvent.EventName }}</h3>
+          <p class="organizer">By: {{ latestEvent.OrganizerName }}</p>
+          <div class="event-details">
+            <span><i class="fa-solid fa-calendar-day"></i> &nbsp;Starts: {{ latestEvent.StartDateTime | date:'fullDate' }}</span>
+            <span><i class="fa-solid fa-location-dot"></i> &nbsp;Location: {{ latestEvent.Location }}</span>
+          </div>
+        </div>
+        <div class="event-actions">
+          <button (click)="viewEventDetails(latestEvent.WorkshopEventId)">View Details</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

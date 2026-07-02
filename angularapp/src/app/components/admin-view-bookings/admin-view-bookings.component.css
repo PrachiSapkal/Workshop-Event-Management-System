@@ -1,0 +1,263 @@
+/* Headings */
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #1e3c72; 
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Table - Sharp corners and themed fonts */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  border-radius: 0; 
+}
+
+/* Table Header & Cells with full grid lines --- */
+th, td {
+  padding: 15px;
+  border: 1px solid #e0e0e0; 
+  text-align: left;
+  vertical-align: middle;
+}
+
+/* Table Header - Themed Background */
+th {
+  background-color: #1e3c72;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Row Striping */
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Row Hover - Themed hover effect */
+tr:hover {
+  background-color: rgba(42, 152, 97, 0.07);
+}
+
+/* Select Dropdown */
+select {
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-weight: 600;
+  font-size: 14px;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: white;
+}
+
+/* Status Colors */
+.status-approved { background-color: #d4edda; color: #155724; border-color: #c3e6cb; }
+.status-under-review { background-color: #fff3cd; color: #856404; border-color: #ffeeba; }
+.status-rejected { background-color: #f8d7da; color: #721c24; border-color: #f5c6cb; }
+
+/* Button Container */
+.action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* All Buttons */
+button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 100%;
+  font-weight: bold;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+/* View Button - Themed Green */
+.view-btn {
+  background-color: #2a9861;
+  color: white;
+}
+
+.view-btn:hover {
+  background-color: #217a50;
+}
+
+/* Delete Button */
+.delete-btn {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #c0392b;
+}
+
+/* Error & No-Bookings Message */
+.error-message,
+.no-bookings {
+  color: #e74c3c;
+  font-size: 14px;
+  margin-top: 20px;
+  font-weight: 500;
+  padding: 15px;
+  background-color: #fff0f0;
+  border-left: 4px solid #e74c3c;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.no-bookings {
+    color: #34495e;
+    background-color: #f4f6f8;
+    border-left-color: #bdc3c7;
+}
+
+/* Spinner - Green theme */
+.spinner-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.spinner-overlay p {
+  margin-top: 15px;
+  font-size: 18px;
+  color: #217a50;
+  font-weight: 600;
+}
+
+.spinner {
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid #2a9861;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  position: relative;
+  max-width: 90%;
+  max-height: 90%;
+  overflow: auto;
+}
+
+.modal-content img {
+  max-width: 100%;
+  max-height: 80vh;
+  display: block;
+  margin: auto;
+}
+.close-btn{
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-top: 10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* --- Themed Pagination --- */
+.pagination-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 30px auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  max-width: 100%;
+}
+
+.pagination-summary {
+  margin-bottom: 15px;
+  color: #6c757d; 
+  font-size: 0.9rem;
+}
+
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.page-numbers {
+  display: flex;
+  gap: 8px;
+}
+
+.pagination-controls button {
+  padding: 10px 18px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  color: #34495e;
+  cursor: pointer;
+  border-radius: 6px; 
+  font-weight: 600;
+  font-size: 15px;
+  transition: all 0.3s ease;
+}
+
+/* NEW RULE FOR NAV BUTTONS */
+.pagination-controls .nav-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pagination-controls button:hover:not(:disabled) {
+  border-color: #007bff;
+  color: #007bff;
+  transform: translateY(-2px);
+}
+
+.pagination-controls button.active {
+  background-color: #007bff; 
+  border-color: #007bff;
+  color: white;
+  box-shadow: 0 2px 5px rgba(0, 123, 255, 0.3);
+}
+
+.pagination-controls button:disabled {
+  background-color: #f8f9fa; 
+  color: #ccc;
+  cursor: not-allowed;
+  border-color: #ddd;
+}

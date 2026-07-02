@@ -1,0 +1,77 @@
+<div class="container">
+  <h1>Workshop Event Booking</h1>
+  <p class="subtitle">Complete the form below to reserve your spot.</p>
+
+  <form [formGroup]="bookingForm" (ngSubmit)="onSubmit()">
+    <!-- Gender -->
+    <div class="form-group">
+      <label for="gender">Gender *</label>
+      <select id="gender" formControlName="gender">
+        <option value="" disabled>Select your gender</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+      </select>
+      <div *ngIf="f.gender.touched && f.gender.errors?.required" class="error-message">
+        Gender is required.
+      </div>
+    </div>
+
+    <!-- Age -->
+    <div class="form-group">
+      <label for="age">Age *</label>
+      <input type="number" id="age" formControlName="age" placeholder="Enter your age" />
+      <div *ngIf="f.age.touched && f.age.errors" class="error-message">
+        <div *ngIf="f.age.errors.required">Age is required.</div>
+        <div *ngIf="f.age.errors.min || f.age.errors.max">Age must be between 15 and 70.</div>
+      </div>
+    </div>
+
+    <!-- Occupation -->
+    <div class="form-group">
+      <label for="occupation">Occupation *</label>
+      <input type="text" id="occupation" formControlName="occupation" placeholder="e.g., Student, Developer" />
+      <div *ngIf="f.occupation.touched && f.occupation.errors" class="error-message">
+        <div *ngIf="f.occupation.errors.required">Occupation is required.</div>
+        <div *ngIf="f.occupation.errors.pattern">Occupation can only contain letters and numbers.</div>
+      </div>
+    </div>
+
+    <!-- City -->
+    <div class="form-group">
+      <label for="city">City *</label>
+      <input type="text" id="city" formControlName="city" placeholder="Enter your current city" />
+      <div *ngIf="f.city.touched && f.city.errors" class="error-message">
+        <div *ngIf="f.city.errors.required">City is required.</div>
+        <div *ngIf="f.city.errors.pattern">City can only contain letters and numbers.</div>
+      </div>
+    </div>
+
+    <!-- Proof Upload -->
+    <div class="form-group">
+      <label for="proof">Proof of Booking (Upload File) *</label>
+      <input type="file" id="proof" (change)="onFileChange($event)" accept="image/*,.pdf" />
+      <div *ngIf="f.proof.touched && f.proof.errors?.required" class="error-message">
+        A proof document (image or PDF) is required.
+      </div>
+    </div>
+
+    <!-- Additional Notes -->
+    <div class="form-group">
+      <label for="notes">Additional Notes (Optional)</label>
+      <textarea id="notes" formControlName="notes" placeholder="Any special requests or information..."></textarea>
+        <div *ngIf="f.notes.touched && f.notes.errors" class="error-message">
+      <div *ngIf="f.notes.errors.pattern">Notes can only contain letters and numbers.</div>
+    </div>   
+  </div>
+
+    <!-- Button Group -->
+    <div class="button-group">
+      <button type="submit" class="btn-submit" [disabled]="submitting">
+        <span *ngIf="!submitting">Book Now</span>
+        <span *ngIf="submitting">Submitting...</span>
+      </button>
+      <button type="button" class="btn-back" (click)="goBack()">Back to Events</button>
+    </div>
+  </form>
+</div>

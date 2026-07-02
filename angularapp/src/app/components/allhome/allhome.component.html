@@ -1,0 +1,103 @@
+<section class="hero">
+    <div class="container">
+
+    <!-- <img src="" alt="Workshop Banner" class="hero-image" /> -->
+
+      <h1 class="title">Workshop Event Management System</h1>
+      <p class="subtitle">
+        Plan, publish, and participate in enriching workshops across technology, business,
+        healthcare, and more — all in one place. Simple registrations, real‑time status updates,
+        and collaborative feedback power a smooth experience for organizers and attendees.
+      </p>
+  
+      <div class="cta">
+        <button class="btn primary" (click)="goToRegister()">Get Started — Register</button>
+        <button class="btn ghost" (click)="goToLogin()">I already have an account</button>
+      </div>
+  
+    </div>
+  </section>
+
+  <!-- Booking-focused section -->
+<section class="booking-section container" aria-labelledby="booking-title">
+    <h2 id="booking-title">Book workshops with ease</h2>
+  
+    <div class="booking-grid">
+      <article class="feature-card">
+        <span class="icon" aria-hidden="true">
+          <!-- magnifier icon -->
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="7"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </span>
+        <h3>Browse & Discover</h3>
+        <p>Find upcoming workshops by category, organizer, or location—see dates, times, and seats left at a glance.</p>
+      </article>
+  
+      <article class="feature-card">
+        <span class="icon" aria-hidden="true">
+          <!-- lightning/bolt icon -->
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+            <path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"></path>
+          </svg>
+        </span>
+        <h3>Quick Registration</h3>
+        <p>Book your seat in a few steps. Add your details and upload proof if required—fast and simple.</p>
+      </article>
+  
+      <article class="feature-card">
+        <span class="icon" aria-hidden="true">
+          <!-- status/checklist icon -->
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 11l3 3L22 4"></path>
+            <path d="M21 12v7a2 2 0 0 1-2 2H5l-4 4V5a2 2 0 0 1 2-2h11"></path>
+          </svg>
+        </span>
+        <h3>Live Booking Status</h3>
+        <p>Track your request from <em>Submitted</em> to <em>Under Review</em>, <em>Approved</em>, or <em>Rejected</em>—all in one place.</p>
+      </article>
+  
+      <article class="feature-card">
+        <span class="icon" aria-hidden="true">
+          <!-- chat/feedback icon -->
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15a4 4 0 0 1-4 4H7l-4 4V6a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"></path>
+          </svg>
+        </span>
+        <h3>Share Feedback</h3>
+        <p>After attending, leave feedback to help organizers improve future sessions.</p>
+      </article>
+    </div>
+  
+    <ul class="booking-highlights" aria-label="Helpful booking highlights">
+      <li><strong>Clear schedules</strong> — view start/end times before you book</li>
+      <li><strong>Seat availability</strong> — know capacity before applying</li>
+      <li><strong>Easy changes</strong> — update or cancel your booking when needed</li>
+    </ul>
+  </section>
+  
+  
+  <section class="callout">
+    <div class="container">
+      <h2>Ready to explore workshops?</h2>
+      <p>Create an account to browse events and book your seat.</p>
+      <button class="btn primary" (click)="goToRegister()">Register now</button>
+    </div>
+  </section>
+  
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <h3>Workshop Event Management System</h3>
+        <p>Discover. Register. Learn. Share.</p>
+      </div>
+      <nav aria-label="Footer">
+        <a routerLink="/login">Login</a>
+        <a routerLink="/register">Register</a>
+        <!-- <a href="#features">Features</a>
+        <a href="#how-it-works">How it works</a> -->
+      </nav>
+    </div>
+  </footer>
+  

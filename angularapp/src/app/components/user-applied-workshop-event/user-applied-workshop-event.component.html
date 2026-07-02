@@ -1,0 +1,83 @@
+<div class="container">
+  <h1>My Applied Workshops</h1>
+
+  <!-- Loading Spinner -->
+  <div *ngIf="isLoading" class="spinner-overlay">
+    <div class="spinner"></div>
+    <p>Loading your applications...</p>
+  </div>
+
+  <!-- Error Message Banner -->
+  <div *ngIf="errorMessage" class="error">
+    {{ errorMessage }}
+  </div>
+
+  <div *ngIf="!isLoading">
+    <!-- No Bookings Message -->
+    <div *ngIf="bookings.length === 0 && !errorMessage" class="info">
+      You have not applied for any workshops yet.
+    </div>
+
+    <div *ngIf="bookings.length > 0">
+      <!-- Sort Controls -->
+      <div class="sort-controls">
+        <span>Sort by Date:</span>
+        <button (click)="sortByDate('desc')">Newest First</button>
+        <button (click)="sortByDate('asc')">Oldest First</button>
+      </div>
+
+      <!-- Bookings Table -->
+      <table class="bookings-table">
+        <thead>
+          <tr>
+            <th>S.No</th>
+            <th>Event Name</th>
+            <th>Organizer</th>
+            <th>Booking Date</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of bookings; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ item.workshopEvent.EventName }}</td>
+            <td>{{ item.workshopEvent.OrganizerName }}</td>
+            <td>{{ item.booking.BookingDate | date: 'mediumDate' }}</td>
+            <td>
+              <span class="status" [ngClass]="item.booking.BookingStatus">{{ item.booking.BookingStatus }}</span>
+            </td>
+            <td class="action-cell">
+              <button class="btn-view-proof" (click)="viewProof(item.booking.Proof)">View Proof</button>
+              <button class="btn-cancel" (click)="openDeleteConfirm(item.booking.BookingId)">Cancel Booking</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div *ngIf="showDeleteModal" class="modal-overlay">
+  <div class="modal-popup">
+    <h3>Confirm Cancellation</h3>
+    <p>Are you sure you want to cancel your booking for this workshop? This action cannot be undone.</p>
+    <div class="modal-actions">
+      <button class="btn-confirm" (click)="cancelBooking()">Yes, Cancel</button>
+      <button class="btn-cancel-modal" (click)="closeDeleteConfirm()">No, Keep It</button>
+    </div>
+  </div>
+</div>
+
+<!-- View Proof Modal -->
+<div *ngIf="showProofModal" class="modal-overlay" (click)="closeProofModal()">
+  <div class="modal-popup proof-popup" (click)="$event.stopPropagation()">
+    <button class="close-btn" (click)="closeProofModal()">×</button>
+    <h3>Proof Document</h3>
+    <div class="proof-content">
+      <img *ngIf="proofFileType.startsWith('image/')" [src]="proofFileUrl" alt="Proof Document" />
+      <iframe *ngIf="proofFileType === 'application/pdf'" [src]="proofFileUrl"></iframe>
+    </div>
+  </div>
+</div>

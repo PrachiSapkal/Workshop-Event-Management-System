@@ -1,0 +1,148 @@
+/* Container - Consistent with admin pages */
+.container {
+  max-width: 650px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #fdfdfd;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Page Title & Subtitle - Themed */
+h1 {
+  text-align: center;
+  color: #1e3c72;
+  margin-bottom: 10px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.subtitle {
+  text-align: center;
+  color: #6c757d;
+  margin-bottom: 30px;
+  font-size: 1rem;
+}
+
+/* Form Group */
+.form-group {
+  margin-bottom: 20px;
+}
+
+/* Labels */
+label {
+  display: block;
+  font-weight: 600;
+  color: #34495e;
+  margin-bottom: 8px;
+}
+
+/* Inputs, Textareas, Selects */
+input[type="text"],
+input[type="number"],
+textarea,
+select {
+  width: 100%;
+  padding: 12px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+  font-family: inherit;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  background-color: white;
+}
+
+/* File Input - Specific Styling */
+input[type="file"] {
+  padding: 10px;
+  background-color: #f8f9fa;
+  border: 1px dashed #ccc;
+}
+
+/* Themed Focus Styles */
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: #2a9861; 
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(42, 152, 97, 0.2);
+}
+
+/* Textarea Specific */
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* Button Group - Themed */
+.button-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+/* Themed Submit Button */
+.btn-submit {
+  background-color: #2a9861; 
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+}
+
+.btn-submit:hover {
+  background-color: #217a50;
+}
+
+.btn-submit:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Themed Back Button */
+.btn-back {
+  background-color: #007bff; 
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+}
+
+.btn-back:hover {
+  background-color: #0056b3;
+}
+
+/* Error Message Styles */
+.error-message {
+  color: #e74c3c;
+  font-size: 13px;
+  margin-top: 8px;
+  font-weight: 500;
+  padding: 8px 12px;
+  background-color: #fff0f0;
+  border-left: 4px solid #e74c3c;
+  border-radius: 4px;
+}
+
+/* Responsive Design */
+@media (max-width: 640px) {
+  .container {
+    padding: 20px;
+    margin: 20px;
+  }
+  .button-group {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,78 @@
+<h1>Feedback Details</h1>
+
+<!-- No Data Message -->
+<div *ngIf="noData" class="info">
+  Oops! No feedback records found.
+</div>
+
+<!-- Feedback Table -->
+<table *ngIf="!noData" class="feedback-table">
+  <thead>
+    <tr>
+      <th>S.No</th>
+      <th>User Name</th>
+      <th>Feedback</th>
+      <th>Posted Date</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- MODIFIED: Loop over 'paginatedFeedbackList' and update S.No calculation -->
+    <tr *ngFor="let feedback of paginatedFeedbackList; let i = index">
+      <td>{{ (currentPage - 1) * itemsPerPage + i + 1 }}</td>
+      <td>{{ feedback.User?.Username || 'N/A' }}</td>
+      <td class="feedback-text">{{ feedback.FeedbackText }}</td>
+      <td>{{ feedback.Date | date: 'mediumDate' }}</td>
+      <td class="action-cell">
+        <button class="btn-profile" (click)="openProfile(feedback)">Show Profile</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- --- NEW: Pagination Controls --- -->
+<div *ngIf="totalPages > 0" class="pagination-container">
+  <div class="pagination-summary">
+    Page {{ currentPage }} of {{ totalPages }}
+  </div>
+  <div class="pagination-controls">
+    <button class="nav-button" (click)="goToPreviousPage()" [disabled]="currentPage === 1">
+      <span>&laquo;</span>
+      <span>Previous</span>
+    </button>
+    <div class="page-numbers">
+      <button *ngFor="let page of pages" 
+              (click)="goToPage(page)" 
+              [class.active]="currentPage === page">
+        {{ page }}
+      </button>
+    </div>
+    <button class="nav-button" (click)="goToNextPage()" [disabled]="currentPage === totalPages">
+      <span>Next</span>
+      <span>&raquo;</span>
+    </button>
+  </div>
+</div>
+
+<!-- Modal for User Details (Unchanged) -->
+<div *ngIf="showModal && selectedFeedbackUser" class="modal-overlay" (click)="closeModal()">
+  <div class="modal-popup" (click)="$event.stopPropagation()">
+    <button class="modal-close-btn" (click)="closeModal()">&times;</button>
+    <div class="modal-header">
+      <h3>User Details</h3>
+    </div>
+    <div class="modal-body">
+      <p><strong>Username:</strong> <span>{{ selectedFeedbackUser.User?.Username || 'N/A' }}</span></p>
+      <p><strong>Email:</strong> <span>{{ selectedFeedbackUser.User?.Email || 'N/A' }}</span></p>
+      <p><strong>Mobile Number:</strong> <span>{{ selectedFeedbackUser.User?.MobileNumber || 'N/A' }}</span></p>
+      <p><strong>Role:</strong> <span>{{ selectedFeedbackUser.User?.UserRole || 'N/A' }}</span></p>
+      <hr>
+      <p><strong>Feedback Submitted:</strong></p>
+      <blockquote>{{ selectedFeedbackUser.FeedbackText }}</blockquote>
+      <p class="feedback-date">on {{ selectedFeedbackUser.Date | date: 'fullDate' }}</p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-secondary" (click)="closeModal()">Close</button>
+    </div>
+  </div>
+</div>

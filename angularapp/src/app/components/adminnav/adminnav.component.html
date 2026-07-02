@@ -1,0 +1,30 @@
+<nav class="navbar" *ngIf="(aService.currentUser | async)?.UserRole === 'Admin'">
+  <div class="navbar-brand">WorkShop Event Management</div>
+  
+  <div class="navbar-links">
+    <a (click)="navigateWithLoader('/admin/admin-profile')">{{ User_name }}/Admin</a>
+    <a (click)="navigateWithLoader('/admin/home')">Home</a>
+
+    <!-- Dropdown for Workshop Events -->
+    <div class="dropdown">
+      <button class="dropbtn">WorkShop Events</button>
+      <div class="dropdown-content">
+        <a (click)="navigateWithLoader('/admin/admin-create-workshop-event')">Add WorkShop Event</a>
+        <a (click)="navigateWithLoader('/admin/admin-view-workshop-event')">View WorkShop Events</a>
+      </div>
+    </div>
+
+    <a (click)="navigateWithLoader('/admin/admin-view-bookings')">Requested Event Bookings</a>
+    <a (click)="navigateWithLoader('/admin/adminviewfeedback')">Feedback</a>
+
+    <button class="logout-button" (click)="logout()">Log Out</button>
+  </div>
+</nav>
+
+<div *ngIf="showLogoutModal" class="modal">
+  <div class="modal-content">
+    <p>Are you sure you want to logout?</p>
+    <button (click)="confirmLogout()" class="btn logout-btn">Yes, Logout</button>
+    <button (click)="cancelLogout()" class="btn btn-secondary">Cancel</button>
+  </div>
+</div>

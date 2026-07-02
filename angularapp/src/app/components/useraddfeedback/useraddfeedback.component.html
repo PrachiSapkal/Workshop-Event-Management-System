@@ -1,0 +1,31 @@
+<div class="feedback-page-container">
+  <div class="themed-card">
+    <h3 class="card-title">Add Your Feedback</h3>
+    <p class="card-subtitle">We'd love to hear about your experience.</p>
+
+    <form (ngSubmit)="onSubmit()" #feedbackForm="ngForm" novalidate>
+      <div class="form-group">
+        <label for="content">Your Feedback *</label>
+        <textarea
+          id="content"
+          name="content"
+          [(ngModel)]="feedbackText"
+          rows="4"
+          placeholder="Share your thoughts and suggestions here..."
+          required
+          class="form-control">
+        </textarea>
+
+        <div *ngIf="showValidationError" class="error">
+          Feedback must contain only letters, numbers.
+        </div>
+      </div>
+
+      <div class="button-group">
+        <button type="submit" class="btn-primary" [disabled]="feedbackForm.invalid">
+          Submit Feedback
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

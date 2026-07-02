@@ -1,0 +1,100 @@
+<h1>Bookings Management</h1>
+
+<!-- Spinner Overlay (Unchanged) -->
+<div *ngIf="isLoading" class="spinner-overlay">
+  <div class="spinner"></div>
+  <p>Updating status, please wait...</p>
+</div>
+
+<!-- Error Message (Unchanged) -->
+<div *ngIf="errorMessage" class="error-message">
+  {{ errorMessage }}
+</div>
+
+<!-- Image Modal (Unchanged) -->
+<div class="modal" *ngIf="showImageModal" (click)="closeImageModal()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <img [src]="modalImageUrl" alt="Proof Image" />
+    <button class="close-btn" (click)="closeImageModal()">Close</button>
+  </div>
+</div>
+
+<!-- Bookings Table (Unchanged) -->
+<table *ngIf="!isLoading && bookingsWithDetails.length > 0">
+  <thead>
+    <tr>
+      <th>S.No</th>
+      <th>User Name</th>
+      <th>Event Name</th>
+      <th>Occupation</th>
+      <th>Gender</th>
+      <th>City</th>
+      <th>Booking Date</th>
+      <th>Status</th>
+      <th>Additional Notes</th>
+      <th>Mobile Number</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of paginatedBookings; let i = index">
+      <td>{{ (currentPage - 1) * itemsPerPage + i + 1 }}</td>
+      <td>{{ item.user?.Username }}</td>
+      <td>{{ item.workshopEvent.data.EventName }}</td>
+      <td>{{ item.booking?.Occupation }}</td>
+      <td>{{ item.booking?.Gender }}</td>
+      <td>{{ item.booking?.City }}</td>
+      <td>{{ item.booking?.BookingDate | date: 'mediumDate' }}</td>
+      <td>
+        <select
+          [ngClass]="{
+            'status-approved': item.booking?.BookingStatus === 'Approved',
+            'status-under-review': item.booking?.BookingStatus === 'UnderReview',
+            'status-rejected': item.booking?.BookingStatus === 'Rejected'
+          }"
+          (change)="updateStatus(item.booking, $event.target.value)"
+        >
+          <option value="UnderReview" [selected]="item.booking?.BookingStatus === 'UnderReview'">UnderReview</option>
+          <option value="Approved" [selected]="item.booking?.BookingStatus === 'Approved'">Approved</option>
+          <option value="Rejected" [selected]="item.booking?.BookingStatus === 'Rejected'">Rejected</option>
+        </select>
+      </td>
+      <td>{{ item.booking?.AdditionalNotes }}</td>
+      <td>{{ item.user?.MobileNumber }}</td>
+      <td class="action-buttons">
+        <button class="view-btn" (click)="openImageModal(item.booking?.Proof)">View Proof</button>
+        <button class="delete-btn" (click)="deleteBooking(item.booking?.BookingId)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- --- Pagination Controls --- -->
+<div *ngIf="totalPages > 0" class="pagination-container">
+  <div class="pagination-summary">
+    Page {{ currentPage }} of {{ totalPages }}
+  </div>
+  <div class="pagination-controls">
+
+    <!-- UPDATED Previous Button -->
+    <button class="nav-button" (click)="goToPreviousPage()" [disabled]="currentPage === 1">
+      <span>&laquo;</span>
+      <span>Previous</span>
+    </button>
+
+    <!-- Page numbers container (Unchanged) -->
+    <div class="page-numbers">
+      <button *ngFor="let page of pages" 
+              (click)="goToPage(page)" 
+              [class.active]="currentPage === page">
+        {{ page }}
+      </button>
+    </div>
+
+    <!-- UPDATED Next Button -->
+    <button class="nav-button" (click)="goToNextPage()" [disabled]="currentPage === totalPages">
+      <span>Next</span>
+      <span>&raquo;</span>
+    </button>
+  </div>
+</div>
